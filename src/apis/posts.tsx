@@ -1,11 +1,14 @@
 import * as core from "express-serve-static-core";
 const https = require("https");
 
-export function BlogPost(router: core.Router) {
-  router.get("/", (req, res) => {
+export function bindPosts(router: core.Router) {
+  router.get("/posts", (req, res) => {
+    let offset = req.query.offset;
+    let limit = req.query.limit;
     https
       .get(
-        "https://public-api.wordpress.com/rest/v1.1/sites/en.blog.wordpress.com/posts/?number=2",
+        `https://public-api.wordpress.com/rest/v1.1/sites/truecaller.blog/posts/?offset=${offset}&number=${limit
+      }`,
         (httpRes) => {
           let body = "";
           httpRes.on("data", (chunk) => {

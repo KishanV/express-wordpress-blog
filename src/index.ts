@@ -4,7 +4,7 @@ import "regenerator-runtime/runtime";
 import * as core from "express-serve-static-core";
 import * as express from "express";
 import { Express } from "express";
-import { BlogPost } from "./apis/blog-posts";
+import { bindPosts } from "./apis/posts";
 
 const bodyParser = require("body-parser");
 const currentPath = process.cwd();
@@ -53,7 +53,7 @@ export class App {
   }
 
   private bindApis() {
-    BlogPost(this.router);
+    bindPosts(this.router);
   }
 }
 
