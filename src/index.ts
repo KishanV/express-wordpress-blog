@@ -5,18 +5,17 @@ import * as core from "express-serve-static-core";
 import * as express from "express";
 import { Express } from "express";
 import { bindPosts } from "./apis/posts";
+import { bindPostContent } from "./apis/posts-content";
+import { bindCategories } from "./apis/categories";
 
 const bodyParser = require("body-parser");
-const currentPath = process.cwd();
 
 export class App {
   express: Express;
   port: number = 6060;
   router: core.Router;
-  currentPath: string;
 
   constructor() {
-    this.currentPath = currentPath;
     this.express = express();
     this.router = express.Router();
     this.mountRoutes();
@@ -54,6 +53,8 @@ export class App {
 
   private bindApis() {
     bindPosts(this.router);
+    bindPostContent(this.router);
+    bindCategories(this.router);
   }
 }
 
