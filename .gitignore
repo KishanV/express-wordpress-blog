@@ -1,0 +1,12 @@
+node_modules
+.next
+dist
+npm-debug.log
+.idea
+*.css.map
+*.js.map
+/build/**/*.*
+ui/src/**/*.css
+ui/src/**/*.js
+package-lock.json
+!initFiles/node_modules**/*
