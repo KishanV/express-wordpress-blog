@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all --parallel watch:build watch:server",
+    "start": "node --inspect ./build/bundle.js",
+    "watch": "npm-run-all --parallel watch:build watch:server",
     "watch:server": "nodemon --inspect ./build/bundle.js  --watch  ./build",
     "watch:build": "webpack --inspect --watch --mode development",
     "build": "webpack",
