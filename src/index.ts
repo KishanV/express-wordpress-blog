@@ -4,6 +4,7 @@ import "regenerator-runtime/runtime";
 import * as core from "express-serve-static-core";
 import * as express from "express";
 import { Express } from "express";
+import { BlogPost } from "./apis/blog-posts";
 
 const bodyParser = require("body-parser");
 const currentPath = process.cwd();
@@ -28,7 +29,6 @@ export class App {
   }
 
   private mountRoutes(): void {
-    this.router = express.Router();
     const router = this.router;
 
     router.use(function (req, res, next) {
@@ -48,13 +48,12 @@ export class App {
       })
     );
 
+    this.bindApis();
     this.express.use("/", router);
+  }
 
-    router.get("/", (req, res) => {
-      res.json({
-        hello: "world",
-      });
-    });
+  private bindApis() {
+    BlogPost(this.router);
   }
 }
 
